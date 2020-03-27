@@ -1,24 +1,5 @@
 //! Support crate for Swagger codegen.
-#![warn(missing_docs, missing_debug_implementations)]
-#![deny(unused_extern_crates)]
-
-#[cfg(feature = "serdejson")]
-extern crate serde;
-#[cfg(feature = "serdejson")]
-extern crate serde_json;
-#[cfg(feature = "serdejson")]
-#[cfg(test)]
-#[macro_use]
-extern crate serde_derive;
-
-extern crate base64;
-extern crate chrono;
-extern crate futures;
-extern crate hyper;
-extern crate hyper_old_types;
-#[cfg(feature = "multipart")]
-extern crate mime;
-extern crate uuid;
+#![deny(missing_docs, missing_debug_implementations, unused_extern_crates)]
 
 use std::error;
 use std::fmt;
@@ -44,7 +25,7 @@ pub mod client;
 
 /// Module with utilities for creating connectors with hyper.
 pub mod connector;
-pub use connector::{http_connector, https_connector, https_mutual_connector};
+pub use connector::Connector;
 
 pub mod composites;
 pub use composites::{CompositeMakeService, CompositeService, NotFound};
@@ -81,7 +62,7 @@ impl<T> ErrorBound for T where T: Into<Box<dyn std::error::Error + Send + Sync>>
 pub struct ApiError(pub String);
 
 impl fmt::Display for ApiError {
-    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         let debug: &dyn fmt::Debug = self;
         debug.fmt(f)
     }

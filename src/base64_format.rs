@@ -1,6 +1,5 @@
 // These functions are only used if the API uses base64-encoded properties, so allow them to be
 // dead code.
-#![allow(dead_code)]
 #[cfg(feature = "serdejson")]
 use base64::{decode, encode};
 #[cfg(feature = "serdejson")]

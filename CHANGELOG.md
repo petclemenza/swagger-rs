@@ -6,10 +6,36 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Added macro `request_parser_joiner` to easily create a composite RequestParser that will match a request against multiple RequestParsers
+
 ### Changed
 
 ### Removed
+
+## [4.0.2] - 2020-03-12
+### Changed
+- Fixed panic where X-Span-ID headers contained non-ASCII characters.
+
+## [4.0.1] - 2020-03-06
+### Changed
+- Use hyper-tls 3 on Mac/Windows/iOS which is compatible with Hyper 0.12, instead of version 4, which isn't.
+
+## [4.0.0] - 2020-02-20
+### Changed
+- Use hyper-openssl on Linux, instead of hyper-tls
+- Use a builder pattern to created client connectors
+- Allow HTTPS connectors to be built which don't pin the server CA certificate
+- Allow HTTPS to work on Mac/Windows/iOS
+- Enforce that HTTPS is used if we are using a HTTPS connector.
+- Return Results, rather than unwrapping errors on connector creation
+- openssl 0.10
+
+## [3.2.0] - 2020-02-12
+### Added
+- Added macro `request_parser_joiner` to easily create a composite RequestParser that will match a request against multiple RequestParsersa
+- Add DropContextService as a client middleware too
+### Changed
+- Make context macros self-contained
+- Update swagger-rs to Rust 2018 Edition
 
 ## [3.1.0] - 2019-05-07
 ### Added
@@ -110,7 +136,11 @@ No changes. We now think we've got enough to declare this crate stable.
 ## [0.5.0] - 2017-09-18
 - Start of changelog.
 
-[Unreleased]: https://github.com/Metaswitch/swagger-rs/compare/3.1.0...HEAD
+[Unreleased]: https://github.com/Metaswitch/swagger-rs/compare/4.0.2...HEAD
+[4.0.2]: https://github.com/Metaswitch/swagger-rs/compare/4.0.1...4.0.2
+[4.0.1]: https://github.com/Metaswitch/swagger-rs/compare/4.0.0...4.0.1
+[4.0.0]: https://github.com/Metaswitch/swagger-rs/compare/3.2.0...4.0.0
+[3.2.0]: https://github.com/Metaswitch/swagger-rs/compare/3.1.0...3.2.0
 [3.1.0]: https://github.com/Metaswitch/swagger-rs/compare/3.0.0...3.1.0
 [3.0.0]: https://github.com/Metaswitch/swagger-rs/compare/2.0.2...3.0.0
 [2.0.2]: https://github.com/Metaswitch/swagger-rs/compare/2.0.1...2.0.2
